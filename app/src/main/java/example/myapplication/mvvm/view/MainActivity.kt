@@ -47,6 +47,8 @@ class MainActivity : AppCompatActivity(), PopularMoviesAdapter.onItemClick, TopR
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.title = "Home"
+
         initRecycleLayout()
         fetchDataAll()
 
@@ -66,7 +68,8 @@ class MainActivity : AppCompatActivity(), PopularMoviesAdapter.onItemClick, TopR
         val id = item.getItemId()
 
         if (id == R.id.action_one) {
-            Toast.makeText(this, "Item One Clicked", Toast.LENGTH_LONG).show()
+            val i = Intent(this, FavouriteActivity::class.java)
+            startActivity(i)
             return true
         }
 

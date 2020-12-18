@@ -1,11 +1,14 @@
 package example.myapplication.api.response
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
+@Entity(tableName = "favourite_movie")
 class MovieResponse : Serializable{
     @SerializedName("poster_path")
     @Expose
@@ -23,10 +26,7 @@ class MovieResponse : Serializable{
     @Expose
     var releaseDate: String? = null
 
-    @SerializedName("genre_ids")
-    @Expose
-    var genreIds: List<Int>? = null
-
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     var id: Int? = null
@@ -62,4 +62,6 @@ class MovieResponse : Serializable{
     @SerializedName("vote_average")
     @Expose
     var voteAverage: Double? = null
+
+    var isFavourite: Boolean = false
 }

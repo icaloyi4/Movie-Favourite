@@ -41,7 +41,6 @@ class TopRatedAdapter(private val mContext: Context, private val list: List<Movi
                 }
 
                 override fun onError(e: Exception?) {
-                    TODO("Not yet implemented")
                 }
 
             })

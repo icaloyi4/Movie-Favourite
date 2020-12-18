@@ -10,14 +10,15 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import example.myapplication.R
 import example.myapplication.api.response.MovieResponse
-import kotlinx.android.synthetic.main.model_list_movies.view.*
+import example.myapplication.utils.Utils
+import kotlinx.android.synthetic.main.model_list_movies_favourite.view.*
 import java.lang.Exception
 
-class PopularMoviesAdapter(private val mContext: Context, private val list: List<MovieResponse>, private var onClickItem: PopularMoviesAdapter.onItemClick) : RecyclerView.Adapter<PopularMoviesAdapter.Holder>(){
+class FavouriteMoviesAdapter(private val mContext: Context, private val list: List<MovieResponse>, private var onClickItem: FavouriteMoviesAdapter.onItemRatedClick) : RecyclerView.Adapter<FavouriteMoviesAdapter.Holder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         return Holder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.model_list_movies,
+                R.layout.model_list_movies_favourite,
                 parent,
                 false
             )
@@ -30,10 +31,14 @@ class PopularMoviesAdapter(private val mContext: Context, private val list: List
 
         val itemListModel : MovieResponse = list!![position]
 
-        Picasso.get().load("https://image.tmdb.org/t/p/w500/${itemListModel.backdropPath}")
-            .into(holder.view.img_popular, object : Callback{
+        holder.view.txt_title.text = itemListModel.title.toString()
+        holder.view.txt_deskripsi.text = itemListModel.overview.toString()
+        holder.view.txt_release.text = Utils.changeDateFormat(itemListModel.releaseDate.toString())
+
+        Picasso.get().load("https://image.tmdb.org/t/p/w342/${itemListModel.posterPath}")
+            .into(holder.view.img_foto, object : Callback {
                 override fun onSuccess() {
-                    holder.view.img_popular.scaleType = ImageView.ScaleType.CENTER_CROP;
+                    holder.view.img_foto.scaleType = ImageView.ScaleType.FIT_XY;
                 }
 
                 override fun onError(e: Exception?) {
@@ -41,19 +46,14 @@ class PopularMoviesAdapter(private val mContext: Context, private val list: List
 
             })
 
-        holder.view.crd_movie.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                onClickItem.itemClick(itemListModel)
-            }
-
-        })
+        holder.view.cons.setOnClickListener { onClickItem.itemClick(itemListModel) }
 
 
     }
 
     class Holder(val view: View) : RecyclerView.ViewHolder(view)
 
-    interface onItemClick{
-       fun itemClick(item : MovieResponse);
+    interface onItemRatedClick{
+        fun itemClick(item : MovieResponse);
     }
 }

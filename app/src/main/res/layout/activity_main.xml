@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:padding="10dp"
     tools:context=".mvvm.view.MainActivity">
 
@@ -26,7 +27,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id = "@+id/lv_popular"
+            android:id="@+id/lv_popular"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -57,7 +58,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id = "@+id/lv_top_rated"
+            android:id="@+id/lv_top_rated"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -87,7 +88,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id = "@+id/lv_now_playing"
+            android:id="@+id/lv_now_playing"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
